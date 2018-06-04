@@ -1,0 +1,38 @@
+<h2>プロフィールページ</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name, value: @user.name, autofocus: true, autocomplete: "name" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :birthday %><br />
+    <%= f.date_select :birthday, {:start_year => 1988, :end_year => 2000}, value: @user.birthday %>
+  </div>
+
+  <div class="field">
+    <%= f.label :gender %><br />
+    <%= f.select :gender, User.genders.keys.to_a, {}, value: @user.gender %>
+  </div>
+
+  <div class="field">
+    <%= f.label :school %><br />
+    <%= f.text_field :school, value: @user.school %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Update" %>
+  </div>
+<% end %>
