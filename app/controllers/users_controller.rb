@@ -8,12 +8,6 @@ class UsersController < ApplicationController
   end
 
   def update
-    super
-    @user = User.find_by(id: params[:id])
-    @user.name = params[:name]
-    @user.birthday = params[:birthday]
-    @user.gender = params[:gender]
-    @user.school = params[:school]
     if @user.save
       redirect_to("/")
     else
@@ -21,4 +15,5 @@ class UsersController < ApplicationController
       render("users/edit")
     end
   end
+
 end
