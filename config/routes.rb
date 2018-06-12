@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-    get '/' => 'profiles#index'
+    root to: 'profiles#index'
 
     devise_for :users
     resources :profiles
