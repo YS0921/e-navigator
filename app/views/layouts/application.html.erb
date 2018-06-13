@@ -11,11 +11,11 @@
   <body>
     <header>
       <ul>
+
+        <% if current_user %>
         <li>
           <%= link_to("e-Navigator", "/") %>
         </li>
-
-        <% if current_user %>
         <li>
           <%= link_to("プロフィール", "/profiles/#{current_user.id}/edit") %>
         </li>
@@ -28,6 +28,10 @@
         <li>
           <%= link_to("ログアウト", "/users/sign_out", {method: :delete}) %>
         </li>
+        <% else %>
+          <li>
+            <%= link_to("e-Navigator", "/users/sign_in") %>
+          </li>
         <% end %>
 
       </ul>
