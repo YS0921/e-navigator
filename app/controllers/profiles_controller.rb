@@ -1,10 +1,11 @@
 class ProfilesController < ApplicationController
+  before_action :authenticate_user!
 
   def index
   end
 
   def edit
-    @user = User.find_by(id: current_user.id)
+    @user = User.find(current_user.id)
   end
 
   def update

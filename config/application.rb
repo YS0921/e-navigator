@@ -27,5 +27,8 @@ module ENavigator
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    #時間表示を日本時間に変更
+    config.time_zone = 'Tokyo'
   end
 end

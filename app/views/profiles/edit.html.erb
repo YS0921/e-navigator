@@ -1,6 +1,6 @@
 <h2>プロフィールページ</h2>
 
-<%= form_for @user ,:url => {:action => :update} do |f| %>
+<%= form_for @user ,url: {action: :update} do |f| %>
 
   <div class="field">
     <%= f.label :email %><br />
@@ -14,7 +14,7 @@
 
   <div class="field">
     <%= f.label :birthday %><br />
-    <%= f.date_select :birthday, {:start_year => 1950, :end_year => 2000}, value: @user.birthday %>
+    <%= f.date_select :birthday, {start_year: 1950, end_year: 2000}, value: @user.birthday %>
   </div>
 
   <div class="field">

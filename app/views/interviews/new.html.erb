@@ -1,0 +1,14 @@
+<h2>新規面接</h2>
+<p>開始時間</p>
+
+<%= form_for @interview ,url: {action: :create} do |f| %>
+
+  <div class="field">
+    <%= f.datetime_select :datetime, {start_year: 2013, end_year: 2023} %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "登録" %>
+  </div>
+
+<% end %>
