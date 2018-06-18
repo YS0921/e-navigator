@@ -28,11 +28,11 @@ class InterviewsController < ApplicationController
   end
 
   def create
-    Interview.create(interview_params)
+    current_user.interview.create(interview_params)
     redirect_to user_interviews_path, notice: "面接が作成されました"
   end
 
   def interview_params
-    params.require(:interview).permit(:datetime).merge(user_id: current_user.id)
+    params.require(:interview).permit(:datetime)
   end
 end
