@@ -6,25 +6,21 @@ class InterviewsController < ApplicationController
   end
 
   def edit
-    @interview = Interview.find_by(user_id: current_user.id)
+    @interview = Interview.find_by(id: params[:id])
   end
 
   def update
     @interview = Interview.find(params[:id])
-    @interview.update(interview_params)
-    if @interview.save
-      flash[:notice] = "面接が編集されました"
-      redirect_to("/interviews/#{@interview.id}/edit")
+    if @interview.update(interview_params)
+      redirect_to("/users/#{current_user.id}/interviews", notice: "面接が編集されました")
     else
-      flash[:notice] = @interview.errors.full_messages
-      render("interviews/#{@interview.id}/edit")
+      render(:edit, notice: @interview.errors.full_messages)
     end
   end
 
   def destroy
-    @interview = Interview.find(params[:id])
-    @interview.destroy
-    redirect_to("/interviews")
+    Interview.find(params[:id]).destroy
+    redirect_to("/users/#{current_user.id}/interviews", notice: "面接を削除しました")
   end
 
   def new
@@ -32,10 +28,8 @@ class InterviewsController < ApplicationController
   end
 
   def create
-    @interview = Interview.new(interview_params)
-    @interview.save
-    flash[:notice] = "面接が作成されました"
-    redirect_to("/interviews")
+    Interview.create(interview_params)
+    redirect_to("/users/#{current_user.id}/interviews", notice: "面接が作成されました")
   end
 
   def interview_params

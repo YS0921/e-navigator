@@ -20,10 +20,7 @@
           <%= link_to("プロフィール", "/profiles/#{current_user.id}/edit") %>
         </li>
         <li>
-          <%= link_to("自分の面接一覧", "/interviews") %>
-        </li>
-        <li>
-          <%= link_to("メール", "/") %>
+          <%= link_to("自分の面接一覧", "/users/#{current_user.id}/interviews") %>
         </li>
         <li>
           <%= link_to("ログアウト", "/users/sign_out", {method: :delete}) %>

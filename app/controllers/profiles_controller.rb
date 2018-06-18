@@ -11,8 +11,7 @@ class ProfilesController < ApplicationController
   def update
     @user = User.find_by(id: params[:id])
     if @user.update(profile_params)
-      flash[:notice] = "プロフィールを編集しました"
-      redirect_to("/profiles/#{@user.id}/edit")
+      redirect_to("/profiles/#{@user.id}/edit", notice: "プロフィールを編集しました")
     else
       render(:edit)
     end
