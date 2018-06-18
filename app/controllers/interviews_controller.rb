@@ -12,15 +12,15 @@ class InterviewsController < ApplicationController
   def update
     @interview = Interview.find(params[:id])
     if @interview.update(interview_params)
-      redirect_to("/users/#{current_user.id}/interviews", notice: "面接が編集されました")
+      redirect_to user_interviews_path, notice: "面接が編集されました"
     else
-      render(:edit, notice: @interview.errors.full_messages)
+      render :edit, notice: @interview.errors.full_messages
     end
   end
 
   def destroy
     Interview.find(params[:id]).destroy
-    redirect_to("/users/#{current_user.id}/interviews", notice: "面接を削除しました")
+    redirect_to user_interviews_path, notice: "面接を削除しました"
   end
 
   def new
@@ -29,7 +29,7 @@ class InterviewsController < ApplicationController
 
   def create
     Interview.create(interview_params)
-    redirect_to("/users/#{current_user.id}/interviews", notice: "面接が作成されました")
+    redirect_to user_interviews_path, notice: "面接が作成されました"
   end
 
   def interview_params
