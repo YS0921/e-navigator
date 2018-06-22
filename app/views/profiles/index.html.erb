@@ -1,2 +1,25 @@
+<h2>ユーザー一覧</h2>
 
-<h2>トップページ</h2>
+<table>
+  <tr>
+    <th>名前</th>
+    <th>Email</th>
+    <th>年齢</th>
+    <th>性別</th>
+    <th>学校名</th>
+    <th>面接日時</th>
+    <th></th>
+  </tr>
+
+  <% @users.each do |user| %>
+  <tr>
+    <td><%= user.name %></td>
+    <td><%= user.email %></td>
+    <td><%= user.age %></td>
+    <td><%= user.gender %></td>
+    <td><%= user.school %></td>
+    <td>（面接日時）</td>
+    <td><%= link_to("面接一覧", "/users/#{user.id}/interviews") %></td>
+  </tr>
+  <% end %>
+</table>

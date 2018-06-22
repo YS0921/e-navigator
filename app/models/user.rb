@@ -7,4 +7,10 @@ class User < ApplicationRecord
   enum gender: {man: 0, women: 1}
 
   has_many :interview, dependent: :destroy
+
+  def age
+    if self.birthday
+      (Date.today.strftime("%Y%m%d").to_i - self.birthday.strftime("%Y%m%d").to_i) / 10000
+    end
+  end
 end
