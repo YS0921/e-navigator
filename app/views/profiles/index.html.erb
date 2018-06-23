@@ -18,7 +18,12 @@
     <td><%= user.age %></td>
     <td><%= user.gender %></td>
     <td><%= user.school %></td>
-    <td><%= user.interview.find_by(status: "approval").datetime.strftime("%Y年%m月%d日%H時%M分") %></td>
+    <td>
+      <% interview = user.interview.find_by(status: "approval") %>
+      <% if interview %>
+      <%= interview.datetime.strftime("%Y年%m月%d日%H時%M分") %>
+      <% end %>
+    </td>
     <td><%= link_to("面接一覧", "/users/#{user.id}/interviews") %></td>
   </tr>
   <% end %>

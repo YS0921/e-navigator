@@ -12,7 +12,8 @@ class InterviewsController < ApplicationController
   end
 
   def update
-    Interview.all.update(status: 2)
+    @user = User.find(params[:user_id])
+    @user.interview.all.update(status: 2)
     @interview = Interview.find(params[:id])
     if @interview.update(interview_params)
       redirect_to user_interviews_path, notice: "面接が編集されました"
