@@ -1,9 +1,22 @@
+<table>
+  <tr>
+    <th>面接開始時間</th>
+    <th>承認状態</th>
+    <th></th>
+    <th></th>
+  </tr>
+
 <% @interviews.each do |interview| %>
-  <%= interview.datetime %>
-  <%= link_to("編集", "/users/#{current_user.id}/interviews/#{interview.id}/edit") %>
-  <%= link_to("削除", "/users/#{current_user.id}/interviews/#{interview.id}", method: :delete) %>
+  <tr>
+    <td><%= interview.datetime.strftime("%Y年%m月%d日 %H時%M分") %></td>
+    <td><%= interview.status %></td>
+    <td><%= link_to("編集", "/users/#{current_user.id}/interviews/#{interview.id}/edit") %></td>
+    <td><%= link_to("削除", "/users/#{current_user.id}/interviews/#{interview.id}", method: :delete) %></td>
   </br>
+  </tr>
 <% end %>
+
+</table>
 
 </br>
 <%= link_to("新規面接作成", "/users/#{current_user.id}/interviews/new") %>
