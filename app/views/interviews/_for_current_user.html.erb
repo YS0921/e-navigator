@@ -1,0 +1,9 @@
+<% @interviews.each do |interview| %>
+  <%= interview.datetime %>
+  <%= link_to("編集", "/users/#{current_user.id}/interviews/#{interview.id}/edit") %>
+  <%= link_to("削除", "/users/#{current_user.id}/interviews/#{interview.id}", method: :delete) %>
+  </br>
+<% end %>
+
+</br>
+<%= link_to("新規面接作成", "/users/#{current_user.id}/interviews/new") %>
