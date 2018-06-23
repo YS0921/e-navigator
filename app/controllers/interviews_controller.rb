@@ -1,20 +1,18 @@
 class InterviewsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_user, only: [:index, :update]
+  before_action :set_interview, only: [:edit, :update, :destroy]
 
   def index
-    @user = User.find(params[:user_id])
     @interviews = @user.interview.all.order(datetime: :asc)
     @approved_interview = @user.interview.find_by(status: "approval")
   end
 
   def edit
-    @interview = Interview.find_by(id: params[:id])
   end
 
   def update
-    @user = User.find(params[:user_id])
     @user.interview.all.update(status: 2)
-    @interview = Interview.find(params[:id])
     if @interview.update(interview_params)
       redirect_to user_interviews_path, notice: "面接が編集されました"
     else
@@ -23,7 +21,7 @@ class InterviewsController < ApplicationController
   end
 
   def destroy
-    Interview.find(params[:id]).destroy
+    @interview.destroy
     redirect_to user_interviews_path, notice: "面接を削除しました"
   end
 
@@ -38,5 +36,13 @@ class InterviewsController < ApplicationController
 
   def interview_params
     params.require(:interview).permit(:datetime, :status)
+  end
+
+  def set_user
+    @user = User.find(params[:user_id])
+  end
+
+  def set_interview
+    @interview = Interview.find(params[:id])
   end
 end
