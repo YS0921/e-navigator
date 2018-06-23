@@ -5,6 +5,7 @@ class InterviewsController < ApplicationController
 
   def index
     @interviews = @user.interview.all.order(datetime: :asc)
+    @interviews_without_approval = @user.interview.where.not(status: "approval").order(datetime: :asc)
     @approved_interview = @user.interview.find_by(status: "approval")
   end
 
