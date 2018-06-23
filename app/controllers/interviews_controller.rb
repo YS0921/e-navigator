@@ -4,7 +4,7 @@ class InterviewsController < ApplicationController
   def index
     @user = User.find(params[:user_id])
     @interviews = @user.interview.all.order(datetime: :asc)
-    @interview_time = Interview.find_by(status: "approval").datetime.strftime("%Y年%m月%d日%H時%M分")
+    @approved_interview = @user.interview.find_by(status: "approval")
   end
 
   def edit

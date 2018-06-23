@@ -1,10 +1,16 @@
 <h3>現在の面接日程</h3>
-<p><%= @interview_time %>に面接が設定されています。</p>
+<p>
+  <% if @approved_interview %>
+  <%= @approved_interview.datetime.strftime("%Y年%m月%d日%H時%M分") %>に面接が設定されています。
+  <% else %>
+  <%= "面接は設定されていません" %>
+  <% end %>
+</p>
 <p>面接日程を変更する場合は以下から選んでください。</p>
 <% @interviews.each do |interview| %>
   <%= form_for [@user, interview] do |f| %>
     <%= f.hidden_field :status, value: "approval" %>
-    <%= f.submit(interview.datetime.strftime("%Y年%m月%d日%H時%M分")) %>
+    <%= f.submit(interview.datetime.strftime("%Y年%m月%d日 %H時%M分"), data: {confirm: interview.datetime.strftime("%Y年%m月%d日 %H時%M分") + "で面接を確定していいですか？"}) %>
     </br>
   <% end %>
 <% end %>
