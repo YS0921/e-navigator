@@ -12,7 +12,7 @@ class ProfilesController < ApplicationController
   def update
     @user = User.find_by(id: params[:id])
     if @user.update(profile_params)
-      redirect_to :edit, notice: "プロフィールを編集しました"
+      redirect_to action: "edit", notice: "プロフィールを編集しました"
     else
       render :edit
     end

@@ -10,7 +10,7 @@
 <% @interviews_without_approval.each do |interview| %>
   <%= form_for [@user, interview] do |f| %>
     <%= f.hidden_field :status, value: "approval" %>
-    <%= f.submit(interview.datetime_print, data: {confirm: interview.datetime.strftime("%Y年%m月%d日 %H時%M分") + "で面接を確定していいですか？"}) %>
+    <%= f.submit(interview.datetime_print, data: {confirm: interview.datetime_print + "で面接を確定していいですか？"}) %>
     </br>
   <% end %>
 <% end %>

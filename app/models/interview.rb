@@ -6,6 +6,6 @@ class Interview < ApplicationRecord
   validates :datetime, presence: true
 
   def datetime_print
-    self.datetime.strftime("%Y年%m月%d日 %H時%M分")
+    self.datetime.strftime("%Y年%m月%d日  %H時%M分")
   end
 end
