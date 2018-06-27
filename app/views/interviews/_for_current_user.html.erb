@@ -6,15 +6,15 @@
     <th></th>
   </tr>
 
-<% @interviews.each do |interview| %>
-  <tr>
-    <td><%= interview.datetime.strftime("%Y年%m月%d日 %H時%M分") %></td>
-    <td><%= interview.status %></td>
-    <td><%= link_to("編集", "/users/#{current_user.id}/interviews/#{interview.id}/edit") %></td>
-    <td><%= link_to("削除", "/users/#{current_user.id}/interviews/#{interview.id}", method: :delete) %></td>
-  </br>
-  </tr>
-<% end %>
+  <% @interviews.each do |interview| %>
+    <tr>
+      <td><%= interview.datetime_print %></td>
+      <td><%= interview.status %></td>
+      <td><%= link_to("編集", "/users/#{current_user.id}/interviews/#{interview.id}/edit") %></td>
+      <td><%= link_to("削除", "/users/#{current_user.id}/interviews/#{interview.id}", method: :delete) %></td>
+    </br>
+    </tr>
+  <% end %>
 
 </table>
 
