@@ -15,7 +15,7 @@ class InterviewsController < ApplicationController
   def update
     @user.interview.all.update(status: :rejection)
     if @interview.update(interview_params)
-      redirect_to action: "index", notice: "面接が編集されました"
+      redirect_to({ action: :index }, notice: "面接が編集されました")
     else
       render :edit, notice: @interview.errors.full_messages
     end
@@ -23,7 +23,7 @@ class InterviewsController < ApplicationController
 
   def destroy
     @interview.destroy
-    redirect_to action: "index", notice: "面接を削除しました"
+    redirect_to({ action: :index }, notice: "面接を削除しました")
   end
 
   def new
@@ -32,7 +32,7 @@ class InterviewsController < ApplicationController
 
   def create
     current_user.interview.create(interview_params)
-    redirect_to action: "index", notice: "面接が作成されました"
+    redirect_to({ action: :index }, notice: "面接が作成されました")
   end
 
   def interview_params
