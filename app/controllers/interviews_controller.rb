@@ -1,6 +1,6 @@
 class InterviewsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_user, only: [:index, :update]
+  before_action :set_user, only: [:index, :update, :request_mail]
   before_action :set_interview, only: [:edit, :update, :destroy]
 
   def index
@@ -35,8 +35,18 @@ class InterviewsController < ApplicationController
     redirect_to({ action: :index }, notice: "面接が作成されました")
   end
 
+  def request_mail
+    @interviewer = User.find_by(mailer_params)
+    InterviewMailer.request(@user, @interviewer).deliver_now
+    redirect_to :index, notice: "面接日程を申請しました"
+  end
+
   def interview_params
     params.require(:interview).permit(:datetime, :status)
+  end
+
+  def mailer_params
+    params.permit(:email)
   end
 
   def set_user
