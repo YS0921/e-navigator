@@ -32,13 +32,13 @@ class InterviewsController < ApplicationController
 
   def create
     current_user.interview.create(interview_params)
-    redirect_to({ action: :index }, notice: "面接が作成されました")
+    redirect_to({action: :index}, notice: "面接が作成されました")
   end
 
   def request_mail
     @interviewer = User.find_by(mailer_params)
-    InterviewMailer.request(@user, @interviewer).deliver_now
-    redirect_to :index, notice: "面接日程を申請しました"
+    InterviewMailer.to_interviewer(@user, @interviewer).deliver_now
+    redirect_to({action: :index}, notice: "面接日程を申請しました")
   end
 
   def interview_params
