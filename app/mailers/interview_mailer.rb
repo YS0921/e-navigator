@@ -3,7 +3,7 @@ class InterviewMailer < ApplicationMailer
 
   def apply(user, interviewer)
     @user = user
-    @url = "http://192.168.33.10:3000/users/#{user.id}/interviews"
+    @url = "https://e-navigator-ys0921.herokuapp.com/users/#{@user.id}/interviews"
     mail(to: interviewer.email, subject: "面接希望日が決まりました")
   end
 
