@@ -15,7 +15,7 @@ class InterviewsController < ApplicationController
   def update
     @user.interview.all.update(status: :rejection)
     if @interview.update(interview_params)
-      InterviewMailer.notify(@user, current_user).deliver_now
+      InterviewMailer.notify(@user, current_user).deliver_later
       redirect_to({action: :index}, notice: "面接が編集されました")
     else
       render :edit, notice: @interview.errors.full_messages
@@ -38,7 +38,7 @@ class InterviewsController < ApplicationController
 
   def request_mail
     @interviewer = User.find_by(mailer_params)
-    InterviewMailer.to_interviewer(@user, @interviewer).deliver_now
+    InterviewMailer.apply(@user, @interviewer).deliver_later
     redirect_to({action: :index}, notice: "面接日程を申請しました")
   end
 
