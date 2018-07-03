@@ -1,5 +1,5 @@
 class InterviewMailer < ApplicationMailer
-  default from: "example@mail.com"
+  default from: ENV['ADDRESS']
 
   def to_interviewer(user, interviewer)
     @user = user

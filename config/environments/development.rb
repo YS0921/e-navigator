@@ -26,21 +26,19 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
-  #以下三項目はgmailからメールを送るための設定
-  config.action_mailer.delivery_method = :smtp
-  # Don't care if the mailer can't send.
+  config.action_mailer.default_url_options = {host: '192.168.33.10', port: 3000, protocol: 'https'}
+  config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    :enable_starttls_auto => true,
-    :address => 'smtp.gmail.com',
-    :port => '587',
-    :domain => 'smtp.gmail.com',
-    :authentication => 'plain',
-    :user_name => 'ユーザー名@gmail.com',
-    :password => 'gmailパスワード'
+    address:              'smtp.gmail.com',
+    port:                 587,
+    domain:               'gmail.com',
+    user_name:            ENV['ADDRESS'],
+    password:             ENV['PASSWORD'],
+    authentication:       'plain',
+    enable_starttls_auto: true
   }
-
-  config.action_mailer.perform_caching = false
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
