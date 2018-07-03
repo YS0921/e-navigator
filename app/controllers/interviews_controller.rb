@@ -7,6 +7,7 @@ class InterviewsController < ApplicationController
     @interviews = @user.interview.all.order(datetime: :asc)
     @interviews_without_approval = @user.interview.where.not(status: :approval).order(datetime: :asc)
     @approved_interview = @user.interview.approval.last
+    @not_approved_interview = @user.interview.where.not(status: :approval).last
   end
 
   def edit
