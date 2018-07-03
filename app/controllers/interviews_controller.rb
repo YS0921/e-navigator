@@ -36,7 +36,7 @@ class InterviewsController < ApplicationController
     redirect_to({action: :index}, notice: "面接が作成されました")
   end
 
-  def request_mail
+  def apply_mail
     @interviewer = User.find_by(mailer_params)
     InterviewMailer.apply(@user, @interviewer).deliver_later
     redirect_to({action: :index}, notice: "面接日程を申請しました")

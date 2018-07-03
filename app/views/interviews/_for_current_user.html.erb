@@ -19,7 +19,7 @@
 </table>
 
 </br>
-<%= form_tag(controller: :interviews, action: :request_mail, method: :post) do %>
+<%= form_tag(controller: :interviews, action: :apply_mail, method: :post) do %>
   <%= select_tag :email, options_for_select(User.where.not(id: params[:user_id]).map{|user| [user.email]}) %>
   <%= submit_tag "申請" %>
 <% end %>
