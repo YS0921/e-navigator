@@ -15,8 +15,12 @@ class InterviewsController < ApplicationController
   def update
     @user.interview.all.update(status: :rejection)
     if @interview.update(interview_params)
-      InterviewMailer.notify(@user, current_user).deliver_later
-      redirect_to({action: :index}, notice: "面接が編集されました")
+      if @user != current_user
+        InterviewMailer.notify(@user, current_user).deliver_later
+        redirect_to({action: :index}, notice: "面接を承認しました")
+      else
+        redirect_to({action: :index}, notice: "面接が編集されました")
+      end
     else
       render :edit, notice: @interview.errors.full_messages
     end
