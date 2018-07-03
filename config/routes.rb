@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :users do
     resources :interviews do
       collection do
-        post "request_mail"
+        post "apply_mail"
       end
     end
   end
