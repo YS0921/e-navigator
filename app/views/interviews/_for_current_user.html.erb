@@ -1,3 +1,4 @@
+<div class = "deleteBr">
 <table>
   <tr>
     <th>面接開始時間</th>
@@ -5,7 +6,6 @@
     <th></th>
     <th></th>
   </tr>
-
   <% @interviews.each do |interview| %>
     <tr>
       <td><%= interview.datetime_print %></td>
@@ -16,6 +16,7 @@
     </tr>
   <% end %>
 </table>
+</div>
 
 </br>
 <%= form_tag(controller: :interviews, action: :apply_mail, method: :post) do %>
