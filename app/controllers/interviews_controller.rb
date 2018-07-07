@@ -47,19 +47,21 @@ class InterviewsController < ApplicationController
     redirect_to({action: :index}, notice: "面接日程を申請しました")
   end
 
-  def interview_params
-    params.require(:interview).permit(:datetime, :status)
-  end
+  private
 
-  def mailer_params
-    params.permit(:email)
-  end
+    def interview_params
+      params.require(:interview).permit(:datetime, :status)
+    end
 
-  def set_user
-    @user = User.find(params[:user_id])
-  end
+    def mailer_params
+      params.permit(:email)
+    end
 
-  def set_interview
-    @interview = Interview.find(params[:id])
-  end
+    def set_user
+      @user = User.find(params[:user_id])
+    end
+
+    def set_interview
+      @interview = Interview.find(params[:id])
+    end
 end

@@ -77,7 +77,7 @@ Rails.application.configure do
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
 
   #メール送信の設定
-  config.action_mailer.default_url_options = {host: '192.168.33.10', port: 3000, protocol: 'https'}
+  config.action_mailer.default_url_options = {host: 'e-navigator-ys0921.herokuapp.com', protocol: 'https'}
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
