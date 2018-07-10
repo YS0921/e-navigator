@@ -1,3 +1,4 @@
+<div class = "deleteBr">
 <table>
   <tr>
     <th>面接開始時間</th>
@@ -5,7 +6,6 @@
     <th></th>
     <th></th>
   </tr>
-
   <% @interviews.each do |interview| %>
     <tr>
       <td><%= interview.datetime_print %></td>
@@ -15,8 +15,14 @@
     </br>
     </tr>
   <% end %>
-
 </table>
+</div>
+
+</br>
+<%= form_tag(controller: :interviews, action: :apply_mail, method: :post) do %>
+  <%= select_tag :email, options_for_select(User.where.not(id: params[:user_id]).map{|user| [user.email]}) %>
+  <%= submit_tag "申請" %>
+<% end %>
 
 </br>
 <%= link_to("新規面接作成", "/users/#{current_user.id}/interviews/new") %>

@@ -6,7 +6,13 @@
     <%= "面接は設定されていません" %>
   <% end %>
 </p>
-<p>面接日程を変更する場合は以下から選んでください。</p>
+<p>
+  <% if @not_approved_interview %>
+    <%= "面接日程を変更する場合は以下から選んでください。" %>
+  <% else %>
+    <%= "変更できる面接日程はありません。" %>
+  <% end %>
+</p>
 <% @interviews_without_approval.each do |interview| %>
   <%= form_for [@user, interview] do |f| %>
     <%= f.hidden_field :status, value: "approval" %>
